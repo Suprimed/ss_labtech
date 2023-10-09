@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Consultas</title>
+
+    <!-- Inclua o Bootstrap CSS (se necessário) -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css"> -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button.btn-primary {
+            background-color: #c90505;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button.btn-primary:hover {
+            background-color: #f74b4b;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Agendamento de Consultas</h1>
+        <form id="consulta-form">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome do Cliente:</label>
+                <input type="text" class="form-control" id="nome" required>
+            </div>
+            <div class="mb-3">
+              <label for="pro" class="form-label">Profissional:</label>
+              <input type="text" class="form-control" id="pro" required>
+          </div>
+            <div class="mb-3">
+                <label for="data" class="form-label">Data da Consulta:</label>
+                <input type="date" class="form-control" id="data" required>
+            </div>
+            <div class="mb-3">
+                <label for="hora" class="form-label">Hora da Consulta:</label>
+                <input type="time" class="form-control" id="hora" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agendar Consulta</button>
+        </form>
+
+        <div class="mt-5">
+            <h2>Consultas Agendadas</h2>
+            <ul id="consultas-agendadas">
+            </ul>
+        </div>
+    </div>
+
+    <!-- Inclua o Bootstrap JavaScript (se necessário) -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js"></script> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const consultaForm = document.getElementById('consulta-form');
+            const consultasAgendadas = document.getElementById('consultas-agendadas');
+
+            consultaForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Captura os valores do formulário
+                const nomeCliente = document.getElementById('nome').value;
+                const proConsulta = document.getElementById('pro').value;
+                const dataConsulta = document.getElementById('data').value;
+                const horaConsulta = document.getElementById('hora').value;
+
+                // Crie um elemento de lista para exibir a consulta agendada
+                const consultaItem = document.createElement('li');
+                consultaItem.textContent = `Nome: ${nomeCliente}, Profissional: ${proConsulta}, Data: ${dataConsulta}, Hora: ${horaConsulta}`;
+
+                // Adicione o item à lista de consultas agendadas
+                consultasAgendadas.appendChild(consultaItem);
+
+                // Limpe o formulário
+                consultaForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
